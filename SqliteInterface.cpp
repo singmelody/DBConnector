@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SqliteInterface.h"
 #include "sqlite3lib/sqlite3.h"
+#include "DBTable.h"
 
 SqliteInterface::SqliteInterface()
 	: DBInterface()
@@ -35,12 +36,21 @@ void SqliteInterface::Close()
 
 bool SqliteInterface::ExecuteSql(const char* sqlStr, DBTable& table)
 {
+	// get valid stmt
 	if (sqlite3_prepare(m_db, sqlStr, strlen(sqlStr), &m_stmt, NULL) != SQLITE_OK)
 	{
 		ReportError();
 		return false;
 	}
-	return true;
+
+	bool b = false;
+	// get table brief
+	GetTableBrief(table);
+
+	// get result
+	b = GetResult(table);
+
+	return b;
 }
 
 
@@ -50,3 +60,46 @@ void SqliteInterface::ReportError()
 	printf("%s\n",error);
 }
 
+void SqliteInterface::GetTableBrief(DBTable& table)
+{
+
+}
+
+bool SqliteInterface::GetResult(DBTable& table)
+{
+	while (sqlite3_step(m_stmt) != SQLITE_DONE)
+	{
+		int columnCount = sqlite3_column_count(m_stmt);
+		if (columnCount <= 0)
+		{
+			printf("empty table\n");
+			return false;
+		}
+
+		DBRow* pRow = new DBRow();
+		if (!pRow)
+		{
+			printf("not enough memory\n");
+			return false;
+		}
+
+		for (int i = 0; i < columnCount; ++i)
+		{
+			DBColumn* pColumn = new DBColumn();
+			if (!pColumn)
+			{
+				printf("not enough memory\n");
+				return false;
+			}
+
+			int nType = sqlite3_column_type(m_stmt, i);
+		}
+
+		table.m_rowList.push_back(pRow);
+	}
+
+	sqlite3_finalize(m_stmt);
+	m_stmt = NULL;
+
+	return true;
+}

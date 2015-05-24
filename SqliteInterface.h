@@ -16,6 +16,8 @@ public:
 	virtual bool ExecuteSql(const char* sqlStr, DBTable& table);
 protected:
 	void ReportError();
+	void GetTableBrief(DBTable& table);
+	bool GetResult(DBTable& table);
 
 	sqlite3*		m_db;
 	sqlite3_stmt*	m_stmt;
