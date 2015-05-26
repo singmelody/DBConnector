@@ -1,6 +1,9 @@
 #pragma once
 #include "DBInterface.h"
-#include "sqlite3.h"
+
+struct sqlite3;
+struct sqlite3_stmt;
+
 class SqliteInterface : public DBInterface
 {
 public:
@@ -10,7 +13,10 @@ public:
 	virtual bool Open(const char* dbFilePath);
 	virtual void Close();
 
+	virtual bool ExecuteSql(const char* sqlStr, DBTable& table);
 protected:
+	void ReportError();
+
 	sqlite3*		m_db;
 	sqlite3_stmt*	m_stmt;
 };

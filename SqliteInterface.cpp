@@ -3,22 +3,45 @@
 #include "sqlite3lib/sqlite3.h"
 
 SqliteInterface::SqliteInterface()
+	: DBInterface()
 {
+	m_db = NULL;
+	m_stmt = NULL;
 }
-
 
 SqliteInterface::~SqliteInterface()
 {
+	Close();
 }
+
 
 bool SqliteInterface::Open(const char* dbFilePath)
 {
-	sqlite3_open(, &m_db);
+	if (sqlite3_open(dbFilePath, &m_db) != SQLITE_OK)
+	{
+		ReportError();
+	}
+
 	return true;
 }
 
 
 void SqliteInterface::Close()
 {
-
+	if (m_db)
+		sqlite3_close(m_db);
 }
+
+bool SqliteInterface::ExecuteSql(const char* sqlStr, DBTable& table)
+{
+
+	return true;
+}
+
+
+void SqliteInterface::ReportError()
+{
+	const char* error = sqlite3_errmsg(m_db);
+	printf("%s\n",error);
+}
+

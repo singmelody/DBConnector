@@ -10,4 +10,3 @@ DBInterface::DBInterface()
 DBInterface::~DBInterface()
 {
 }
-
