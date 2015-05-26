@@ -20,6 +20,7 @@ bool SqliteInterface::Open(const char* dbFilePath)
 	if (sqlite3_open(dbFilePath, &m_db) != SQLITE_OK)
 	{
 		ReportError();
+		return false;
 	}
 
 	return true;
@@ -34,7 +35,11 @@ void SqliteInterface::Close()
 
 bool SqliteInterface::ExecuteSql(const char* sqlStr, DBTable& table)
 {
-
+	if (sqlite3_prepare(m_db, sqlStr, strlen(sqlStr), &m_stmt, NULL) != SQLITE_OK)
+	{
+		ReportError();
+		return false;
+	}
 	return true;
 }
 
