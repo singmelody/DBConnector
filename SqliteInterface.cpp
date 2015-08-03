@@ -62,7 +62,18 @@ void SqliteInterface::ReportError()
 
 void SqliteInterface::GetTableBrief(DBTable& table)
 {
+	int columnCount = sqlite3_column_count(m_stmt);
 
+	for (int i = 0; i < columnCount; ++i)
+	{
+		DBColumn* pColumn = new DBColumn();
+		if (!pColumn)
+			return;
+
+		const char* columnName = sqlite3_column_decltype( m_stmt, i);
+
+		printf("%s\n", columnName);
+	}
 }
 
 bool SqliteInterface::GetResult(DBTable& table)
