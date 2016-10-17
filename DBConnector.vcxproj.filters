@@ -87,6 +87,9 @@
       <Filter>Util\tinyxml</Filter>
     </ClInclude>
     <ClInclude Include="ConnectServer.h" />
+    <ClInclude Include="CircularQueue.h">
+      <Filter>Util\Container</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sqlite3lib\sqlite3secure.c">

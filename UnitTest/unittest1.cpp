@@ -8,6 +8,7 @@
 #include "ConfigManager.h"
 #include <iostream>
 #include "ConnectServer.h"
+#include "CircularQueue.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -199,6 +200,22 @@ namespace UnitTest
 			Logger::WriteMessage(worldIp.c_str());
 			Logger::WriteMessage("\n");
 			Logger::WriteMessage(dbcName.c_str());
+		}
+
+		template <class T>
+		class Helper
+		{
+		public:
+			enum { eNeedInit = 0 };
+		};
+
+
+
+		TEST_METHOD(Test_ClassSpecifiyImpl)
+		{
+			CircularQueue<int32, 10> t;
+			CircularQueue<DBInterface*, 10> t1;
+
 		}
 	};
 }
