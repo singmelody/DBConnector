@@ -220,12 +220,19 @@ bool ConfigManager::LoadConfigFromIni(const std::string& strFilePath, bool bRepl
 		if( strValue.empty() || strValue.empty() )
 			continue;
 
-		if ( strCurrentSection == "Config")
+		if ( strCurrentSection == "ConfigFile")
 		{
 			std::string strPath = MainPath();
 			strPath += strValue;
 
-			bFailed = !LoadConfigFromIni( strPath.c_str(), bReplaceOlder);
+			std::string strFormat = strValue.substr(strValue.find_last_of('.'));
+			std::transform(strValue.begin(), strValue.end(), strValue.begin(), ::tolower);
+
+			if (strFormat == ".ini")
+				bFailed = !LoadConfigFromIni(strPath.c_str(), bReplaceOlder);
+			else
+				bFailed = !LoadConfigFromXML(strPath.c_str(), bReplaceOlder);
+			
 			continue;
 		}
 

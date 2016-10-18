@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<config>
+	<CommonConfig>
+		<param name="DBType" value="0" Descript="0:CenterDB;1:LocalDB;2:LocalEncrypted;3:Temp" />
+		<param name="DBCName" value="test" />
+		<param name="DBCUser" value="root"/>
+		<param name="DBCPassword" value="123456"/>
+		<param name="DBTempFile" value="..\Temp.db"/>
+	</CommonConfig>
+</config>

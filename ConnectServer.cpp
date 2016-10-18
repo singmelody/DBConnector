@@ -16,7 +16,6 @@ ConnectServer::~ConnectServer()
 
 bool ConnectServer::Init(int32 nArgc, char* argv[])
 {
-
 	std::stringstream strArgs;
 	std::string strConfig;
 

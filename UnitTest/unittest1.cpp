@@ -188,12 +188,17 @@ namespace UnitTest
 
 			ConnectServer::Instance().Init(nArgc, argv);
 
-
+			// test ini
 			std::string worldIp;
 			ConfigManager::GetConfigValue("CommonConfig", "WorldIP", worldIp);
 
-			Logger::WriteMessage(worldIp.c_str());
+			// test xml
+			std::string dbcName;
+			ConfigManager::GetConfigValue("CommonConfig", "DBCName", dbcName);
 
+			Logger::WriteMessage(worldIp.c_str());
+			Logger::WriteMessage("\n");
+			Logger::WriteMessage(dbcName.c_str());
 		}
 	};
 }
