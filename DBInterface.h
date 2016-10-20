@@ -8,7 +8,7 @@ public:
 	DBInterface();
 	virtual ~DBInterface();
 
-	virtual bool Open(const char* dbFile) { return false; }
+	virtual bool Open(const char* dbFile, const char* pPassword = "") { return false; }
 	virtual void Close() {}
 
 	virtual bool ExecuteSql(const char* sqlStr, DBTable& table) { return false;  }

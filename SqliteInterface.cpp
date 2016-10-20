@@ -16,12 +16,23 @@ SqliteInterface::~SqliteInterface()
 }
 
 
-bool SqliteInterface::Open(const char* dbFilePath)
+bool SqliteInterface::Open(const char* dbFilePath, const char* pPassword)
 {
 	if (sqlite3_open(dbFilePath, &m_db) != SQLITE_OK)
 	{
 		ReportError();
 		return false;
+	}
+
+	size_t nKeyLen = strlen(pPassword);
+	if (nKeyLen > 0)
+	{
+		if (sqlite3_key(m_db, pPassword, int(nKeyLen)) != 0)
+		{
+			sqlite3_close(m_db);
+			printf("Password Is Not Right!\n");
+			return false;
+		}
 	}
 
 	return true;
