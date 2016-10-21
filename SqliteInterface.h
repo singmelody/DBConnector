@@ -11,7 +11,7 @@ public:
 	virtual ~SqliteInterface();
 
 	virtual bool Open(const char* dbFilePath, const char* pPassword = "");
-	virtual void Close();
+	virtual bool Close();
 
 	virtual bool ExecuteSql(const char* sqlStr, DBTable& table);
 protected:

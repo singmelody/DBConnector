@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SqliteInterface.h"
 #include "sqlite3lib/sqlite3.h"
-#include "DBTable.h"
+#include "DBDataType.h"
 
 SqliteInterface::SqliteInterface()
 	: DBInterface()
@@ -39,10 +39,12 @@ bool SqliteInterface::Open(const char* dbFilePath, const char* pPassword)
 }
 
 
-void SqliteInterface::Close()
+bool SqliteInterface::Close()
 {
 	if (m_db)
 		sqlite3_close(m_db);
+
+	return true;
 }
 
 bool SqliteInterface::ExecuteSql(const char* sqlStr, DBTable& table)
@@ -77,13 +79,47 @@ void SqliteInterface::GetTableBrief(DBTable& table)
 
 	for (int i = 0; i < columnCount; ++i)
 	{
-		DBColumn* pColumn = new DBColumn();
-		if (!pColumn)
-			return;
+		const char* pName = sqlite3_column_name( m_stmt, i);
+		const char* sType = sqlite3_column_decltype( m_stmt, i);
 
-		const char* columnName = sqlite3_column_decltype( m_stmt, i);
+		int32 nDBType = eDB_UnKonw;
 
-		printf("%s\n", columnName);
+		if (const_cast<char*>(strstr(sType, "INT")))
+		{
+			if (strstr(sType, "(8)"))
+				nDBType = eDB_INT64;
+			else if (strstr(sType, "(4)"))
+				nDBType = eDB_INT;
+			else if (strstr(sType, "(2)"))
+				nDBType = eDB_SMALLINT;
+			else if (strstr(sType, "(1)"))
+				nDBType = eDB_TINYINT;
+		}
+		else if (strstr(sType, "integer"))
+		{
+			nDBType = eDB_INT;
+		}
+		else if (strstr(sType, "REAL"))
+		{
+			if (strstr( sType, "(8)"))
+				nDBType = eDB_DOUBLE;
+			else if (strstr(sType, "(4)"))
+				nDBType = eDB_FLOAT;
+		}
+		else if (strstr(sType, "DOUBLE"))
+		{
+			nDBType = eDB_DOUBLE;
+		}
+		else if (strstr(sType, "VARCHAR"))
+		{
+			nDBType = eDB_TEXT;
+		}
+		else if (strstr(sType, "blob"))
+		{
+			nDBType = eDB_TEXT;
+		}
+
+		table.AddColumn(pName, i, nDBType);
 	}
 }
 
@@ -105,16 +141,40 @@ bool SqliteInterface::GetResult(DBTable& table)
 			return false;
 		}
 
+		pRow->SetDBTable(&table);
+		pRow->Reserve(columnCount);
+
 		for (int i = 0; i < columnCount; ++i)
 		{
-			DBColumn* pColumn = new DBColumn();
-			if (!pColumn)
+			int32 nDataType = sqlite3_column_type( m_stmt, i);
+			if (nDataType == SQLITE_NULL)
 			{
-				printf("not enough memory\n");
-				return false;
+				pRow->AddColumn();
+				continue;
 			}
 
-			int nType = sqlite3_column_type(m_stmt, i);
+			int32 nType = table.GetColumnType(i);
+			if (nType == eDB_TEXT || nType == eDB_BLOB)
+			{
+				int32 nLen = sqlite3_column_bytes( m_stmt, i);
+				const unsigned char* text = sqlite3_column_text( m_stmt, i);
+
+				bool bIsStr = ((nType == eDB_TEXT) ? true : false);
+
+				pRow->AddColumn( (char*)(const_cast<unsigned char*>(text)), nLen, bIsStr);
+			}
+			else if (nType == eDB_INT64)
+			{
+				pRow->AddColumn(sqlite3_column_int64( m_stmt, i));
+			}
+			else if (nType == eDB_INT || nType == eDB_SMALLINT || nType == eDB_TINYINT)
+			{
+				pRow->AddColumn(sqlite3_column_int( m_stmt, i));
+			}
+			else if (nType == eDB_FLOAT || nType == eDB_DOUBLE)
+			{
+				pRow->AddColumn(sqlite3_column_double(m_stmt, i));
+			}
 		}
 
 		table.m_rowList.push_back(pRow);

@@ -4,15 +4,12 @@
 #include "stdafx.h"
 
 #include "SqliteInterface.h"
-#include "DBTable.h"
-
-#include <memory>
+#include "DBDataType.h"
+#include <iostream>
+#include <sstream>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	std::auto_ptr<DBInterface> pInterface(new SqliteInterface());
-
-
 
 	return 0;
 }

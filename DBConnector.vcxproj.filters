@@ -30,10 +30,16 @@
     <ClInclude Include="DBInterface.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DBTable.h">
+    <ClInclude Include="SqliteInterface.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SqliteInterface.h">
+    <ClInclude Include="DBDataType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUtil.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,9 +50,6 @@
     <ClCompile Include="DBInterface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DBTable.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="sqlite3lib\sqlite3secure.c">
       <Filter>源文件\secure</Filter>
     </ClCompile>
@@ -54,6 +57,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBDataType.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUtil.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ODBCInterface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
