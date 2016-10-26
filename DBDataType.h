@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseType.h"
+#include "MyVector.h"
 #include <list>
 #include <map>
 #include <vector>
@@ -126,6 +127,8 @@ public:
 		else
 			obj = defaultValue;
 	}
+
+	void Fill(Vector3& obj, int32 nColX, int32 nColY, int32 nColZ);
 
 	void SetDBTable(DBTable* pTable) { m_pTable = pTable; }
 	void Reserve(int32 nNum) { m_columns.reserve(nNum);  }

@@ -18,3 +18,4 @@ public:
 
 	virtual bool ExecuteSql(const char* sqlStr, DBTable& table) { return false;  }
 };
+

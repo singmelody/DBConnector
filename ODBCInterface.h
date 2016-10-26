@@ -53,17 +53,3 @@ protected:
 	//DB_DS		m_db_static;
 };
 
-/*
-class ODBCConnectionManager : public DBConnectionManager
-{
-public:
-	ODBCConnectionManager(int32 n);
-	virtual ~ODBCConnectionManager();
-
-	virtual bool Init( const char* dbName, const char* user, const char* pwd, const char* codepageSql);
-
-	virtual void Close();
-	virtual DBConnection* GetDBInterface();
-
-};
-*/
