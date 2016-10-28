@@ -10,7 +10,9 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
+	FILE* p;
+	freopen_s( &p, "1.txt", "w", stdout);
+	std::cout << argc << "" << *argv << std::endl;
 	return 0;
 }
 

@@ -16,7 +16,7 @@ SqliteInterface::~SqliteInterface()
 }
 
 
-bool SqliteInterface::Open(const char* dbFilePath, const char* pPassword)
+bool SqliteInterface::Open(const char* dbFilePath, const char* pUserName, const char* pPassword)
 {
 	if (sqlite3_open(dbFilePath, &m_db) != SQLITE_OK)
 	{

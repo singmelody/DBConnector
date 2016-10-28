@@ -4,13 +4,14 @@
 #include "ODBCInterface.h"
 #include "DBDataType.h"
 #include "GameUtil.h"
+#include "MyListNode.h"
 #include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(UnitTest_Sqlite)
 	{
 	public:
 		
@@ -97,7 +98,7 @@ namespace UnitTest
 		}
 	};
 
-	TEST_CLASS(UnitTest2)
+	TEST_CLASS(UnitTest_ODBC)
 	{
 		TEST_METHOD(ODBCQuery)
 		{
@@ -133,6 +134,50 @@ namespace UnitTest
 			}
 
 			SAFE_DELETE(pInterface);
+		}
+	};
+
+	TEST_CLASS(UnitTest_GameUtil)
+	{
+		TEST_METHOD(MyListAdd)
+		{
+			// add
+			MyList<MyListNode<int32> > pList;
+			for (int32 i = 0; i < 100000; ++i)
+			{
+				MyListNode<int32>* pNode = new MyListNode<int32>();
+				if (!pNode)
+					continue;
+
+				pList.Add(pNode);
+			}
+
+			Assert::IsTrue(pList.GetCount() == 100000);
+
+			auto headPtr = pList.GetNext(NULL);
+			while (headPtr)
+			{
+				auto tmpPtr = headPtr;
+				headPtr = pList.Remove(headPtr);
+				SAFE_DELETE(tmpPtr);
+			}
+
+			Assert::IsTrue(pList.GetCount() == 0);
+		}
+
+		TEST_METHOD(CommandOption)
+		{
+			int32 nArgc = 7;
+			char* argv[] = { 
+				"F:\\DBConnector\\Debug\\Game.exe", 
+				"-Path", "../../", 
+				"-Config", "GroupConfig0.ini", 
+				"-Section", "Node0" };
+			
+			std::string strValue;
+			bool b = GameUtil::GetCommandOpt("-Section", strValue, nArgc, argv);
+			Assert::IsTrue(b);
+			Assert::IsTrue("Node0" == strValue);
 		}
 	};
 }

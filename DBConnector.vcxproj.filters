@@ -13,66 +13,96 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="源文件\secure">
+    <Filter Include="DBC">
+      <UniqueIdentifier>{10cd2b4f-3740-42d8-b940-5ed802898333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBC\DBInterface">
+      <UniqueIdentifier>{8e4f5d61-9b1e-4d64-9910-3b22a82116c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBC\ODBC">
+      <UniqueIdentifier>{46e0d22f-80e9-47a1-be25-53b7ed7605b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBC\Sqlite">
+      <UniqueIdentifier>{37037bff-d720-446a-8eb3-6339e6a3274c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBC\Sqlite\secure">
       <UniqueIdentifier>{e9920716-a075-4ba5-9ab7-e6afc1ad849c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{d9941147-b4f6-48eb-a191-01cf230dcd46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="BaseType.h">
+      <Filter>DBC\DBInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="DBDataType.h">
+      <Filter>DBC\DBInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="DBInterface.h">
+      <Filter>DBC\DBInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="ODBCInterface.h">
+      <Filter>DBC\ODBC</Filter>
+    </ClInclude>
+    <ClInclude Include="SqliteInterface.h">
+      <Filter>DBC\Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DBInterface.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="MyListNode.h">
+      <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="SqliteInterface.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="DBDataType.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseType.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="GameUtil.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MyVector.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="ConfigManager.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="sqlite3lib\sqlite3secure.c">
+      <Filter>DBC\Sqlite\secure</Filter>
+    </ClCompile>
+    <ClCompile Include="DBDataType.cpp">
+      <Filter>DBC\DBInterface</Filter>
     </ClCompile>
     <ClCompile Include="DBInterface.cpp">
-      <Filter>源文件</Filter>
+      <Filter>DBC\DBInterface</Filter>
     </ClCompile>
-    <ClCompile Include="sqlite3lib\sqlite3secure.c">
-      <Filter>源文件\secure</Filter>
+    <ClCompile Include="ODBCInterface.cpp">
+      <Filter>DBC\ODBC</Filter>
     </ClCompile>
     <ClCompile Include="SqliteInterface.cpp">
+      <Filter>DBC\Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="MyVector.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DBDataType.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="MyListNode.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="GameUtil.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="ConfigManager.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="ODBCInterface.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MyVector.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
 </Project>
