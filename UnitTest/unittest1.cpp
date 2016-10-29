@@ -5,6 +5,7 @@
 #include "DBDataType.h"
 #include "GameUtil.h"
 #include "MyListNode.h"
+#include "ConfigManager.h"
 #include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -178,6 +179,14 @@ namespace UnitTest
 			bool b = GameUtil::GetCommandOpt("-Section", strValue, nArgc, argv);
 			Assert::IsTrue(b);
 			Assert::IsTrue("Node0" == strValue);
+		}
+
+		TEST_METHOD(Test_ConfigManager)
+		{
+			std::string worldIp;
+			ConfigManager::GetConfigValue("CommonConfig", "WorldIP", worldIp);
+
+			
 		}
 	};
 }

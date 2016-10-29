@@ -1,10 +1,10 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "ConfigManager.h"
 #include <algorithm>
 // #include "MyFile.h"
-// #include "MyLog.h"
+#include "MyLog.h"
 #include "GameUtil.h"
-//#include "thirdparty/tinyxml/tinyxml.h"
+#include "tinyxml/tinyxml.h"
 
 ConfigItem* ConfigSection::AddConfigItem( const char* valueName)
 {
@@ -88,6 +88,7 @@ bool ConfigSection::GetConfigValue(const char* valueName, double& nValue)
 std::string ConfigManager::m_strMainPath;
 bool ConfigManager::m_bCustomSectionValid = false;
 std::string ConfigManager::m_strCustomSection;
+ConfigSectionMap ConfigManager::m_values;
 
 ConfigManager::ConfigManager(void)
 {

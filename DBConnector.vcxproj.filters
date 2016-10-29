@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="DBC">
       <UniqueIdentifier>{10cd2b4f-3740-42d8-b940-5ed802898333}</UniqueIdentifier>
     </Filter>
@@ -25,11 +13,29 @@
     <Filter Include="DBC\Sqlite">
       <UniqueIdentifier>{37037bff-d720-446a-8eb3-6339e6a3274c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DBC\Sqlite\secure">
-      <UniqueIdentifier>{e9920716-a075-4ba5-9ab7-e6afc1ad849c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{d9941147-b4f6-48eb-a191-01cf230dcd46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{5c136c45-a399-47f0-949f-c36f57300404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\secure">
+      <UniqueIdentifier>{e9920716-a075-4ba5-9ab7-e6afc1ad849c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\tinyxml">
+      <UniqueIdentifier>{189f3751-edd4-4fa3-9b1b-25834da6a136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Log">
+      <UniqueIdentifier>{4999f69a-8cb3-47f7-b0a8-545c1be6320a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Config">
+      <UniqueIdentifier>{475b7049-6727-4d30-9916-40053d6ce215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Container">
+      <UniqueIdentifier>{dd004c1c-7bfb-4058-baaa-364b35c2505f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\tinyxml">
+      <UniqueIdentifier>{fa876f48-9560-4e9d-8dab-a84fc167ce90}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,28 +54,42 @@
     <ClInclude Include="SqliteInterface.h">
       <Filter>DBC\Sqlite</Filter>
     </ClInclude>
-    <ClInclude Include="MyVector.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="GameUtil.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="ConfigManager.h">
+      <Filter>Util\Config</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="MyVector.h">
+      <Filter>Util\Container</Filter>
     </ClInclude>
     <ClInclude Include="MyListNode.h">
-      <Filter>Util</Filter>
+      <Filter>Util\Container</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigManager.h">
-      <Filter>Util</Filter>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Log.h">
+      <Filter>Util\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="MyLog.h">
+      <Filter>Util\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMutex.h">
+      <Filter>Util\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="NoCopyable.h">
+      <Filter>Util\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml\tinystr.h">
+      <Filter>Util\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml\tinyxml.h">
+      <Filter>Util\tinyxml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sqlite3lib\sqlite3secure.c">
-      <Filter>DBC\Sqlite\secure</Filter>
+      <Filter>ThirdParty\secure</Filter>
     </ClCompile>
     <ClCompile Include="DBDataType.cpp">
       <Filter>DBC\DBInterface</Filter>
@@ -86,20 +106,37 @@
     <ClCompile Include="GameUtil.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigManager.cpp">
+      <Filter>Util\Config</Filter>
+    </ClCompile>
     <ClCompile Include="MyVector.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Util\Container</Filter>
     </ClCompile>
     <ClCompile Include="MyListNode.cpp">
-      <Filter>Util</Filter>
+      <Filter>Util\Container</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigManager.cpp">
-      <Filter>Util</Filter>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Log.cpp">
+      <Filter>Util\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="MyLog.cpp">
+      <Filter>Util\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMutex.cpp">
+      <Filter>Util\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinystr.cpp">
+      <Filter>Util\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxml.cpp">
+      <Filter>Util\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxmlerror.cpp">
+      <Filter>Util\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxmlparser.cpp">
+      <Filter>Util\tinyxml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

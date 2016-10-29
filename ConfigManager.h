@@ -59,7 +59,7 @@ public:
 	}
 
 
-	static const std::string& MainPath();
+	static const std::string& MainPath() { return m_strMainPath; }
 	static void SetMainPath(std::string& strMainPath);
 	static void SetCustomSection(std::string& strCustomSection);
 
