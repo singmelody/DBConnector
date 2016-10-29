@@ -86,6 +86,7 @@
     <ClInclude Include="ConfigManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ConnectServer.h" />
     <ClInclude Include="DBDataType.h" />
     <ClInclude Include="DBInterface.h" />
     <ClInclude Include="GameUtil.h" />
@@ -106,6 +107,7 @@
     <ClCompile Include="ConfigManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ConnectServer.cpp" />
     <ClCompile Include="DBDataType.cpp" />
     <ClCompile Include="DBInterface.cpp" />
     <ClCompile Include="GameUtil.cpp" />

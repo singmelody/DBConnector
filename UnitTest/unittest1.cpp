@@ -7,6 +7,7 @@
 #include "MyListNode.h"
 #include "ConfigManager.h"
 #include <iostream>
+#include "ConnectServer.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -92,11 +93,6 @@ namespace UnitTest
 
 			pInterface->Close();
 		}
-
-		TEST_METHOD(TestMethod3)
-		{
-
-		}
 	};
 
 	TEST_CLASS(UnitTest_ODBC)
@@ -171,7 +167,7 @@ namespace UnitTest
 			int32 nArgc = 7;
 			char* argv[] = { 
 				"F:\\DBConnector\\Debug\\Game.exe", 
-				"-Path", "../../", 
+				"-Path", "../", 
 				"-Config", "GroupConfig0.ini", 
 				"-Section", "Node0" };
 			
@@ -183,10 +179,21 @@ namespace UnitTest
 
 		TEST_METHOD(Test_ConfigManager)
 		{
+			int32 nArgc = 7;
+			char* argv[] = {
+				"F:\\DBConnector\\Debug\\Game.exe",
+				"-Path", "F:/DBConnector/",
+				"-Config", "GroupConfig0.ini",
+				"-Section", "Node0" };
+
+			ConnectServer::Instance().Init(nArgc, argv);
+
+
 			std::string worldIp;
 			ConfigManager::GetConfigValue("CommonConfig", "WorldIP", worldIp);
 
-			
+			Logger::WriteMessage(worldIp.c_str());
+
 		}
 	};
 }

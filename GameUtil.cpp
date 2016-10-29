@@ -4,6 +4,35 @@
 #include <windows.h>
 #include <wchar.h>
 
+std::string MyPath::m_MainPath = "";
+
+void MyPath::SetMainPath(const char* path)
+{
+	if (!path)
+		return;
+
+	m_MainPath = path;
+}
+
+
+void MyPath::GetDirFiles(const std::string& path, std::set<std::string>& files)
+{
+	files.clear();
+
+	WIN32_FIND_DATA fd;
+	HANDLE h = FindFirstFile((path + "/*.*").c_str(), &fd);
+	if (h == INVALID_HANDLE_VALUE)
+		return;
+
+	do
+	{
+		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+			continue;
+
+		files.insert(std::string(fd.cFileName));
+	} while (FindNextFile(h, &fd));
+}
+
 GameUtil::GameUtil()
 {
 }
@@ -47,7 +76,7 @@ std::string GameUtil::TrimStr(const std::string& str, const std::string strTrim)
 		return std::string();
 
 	std::string strRet = str.substr(pStart);
-	std::string::size_type pEnd = str.find_last_not_of(strTrim);
+	std::string::size_type pEnd = strRet.find_last_not_of(strTrim);
 	if (pEnd == std::string::npos)
 		return strRet;
 

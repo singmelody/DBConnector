@@ -1,6 +1,24 @@
 #pragma once
 
 #include <string>
+#include <set>
+
+class MyPath
+{
+public:
+	MyPath()
+	{
+		m_MainPath = "./";
+	}
+
+	~MyPath(){}
+
+	static const char* MainPath() { return m_MainPath.c_str(); }
+	static void SetMainPath(const char* path);
+	static void GetDirFiles(const std::string& path, std::set<std::string>& files);
+protected:
+	static std::string m_MainPath;
+};
 
 class GameUtil
 {
